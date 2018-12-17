@@ -35,6 +35,7 @@ class Expense extends Component {
                     <td>{expense.amount}</td>
                     <td>{expense.title}</td>
                     <td>{expense.category.label}</td>
+                    <td>{expense.person.shareGroup.slug}</td>
                 </tr>
                 </tbody>
             );
@@ -51,6 +52,7 @@ class Expense extends Component {
                         <th>Dépense</th>
                         <th>Description</th>
                         <th>Catégorie</th>
+                        <th>Groupe</th>
                     </tr>
                     </thead>
                     {expense}
