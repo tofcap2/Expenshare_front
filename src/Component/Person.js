@@ -18,15 +18,17 @@ class Person extends Component {
             .then(response => response.json())
             .then(data => this.setState({person:data}))
         ;
+
     }
 
-
     render() {
+
+        console.log(this.props.person);
 
         let person = <div>Chargement en cours</div>;
 
         if (this.state.person.length > 0) {
-            person = this.state.person.map(person => <Col key={person.id}>{person.firstname + ' ' + person.lastname}</Col>);
+            person = this.state.person.map(person => <Col key={person.id}>{person.firstname + ' ' + person.shareGroup.slug}</Col>);
         }
 
         return (

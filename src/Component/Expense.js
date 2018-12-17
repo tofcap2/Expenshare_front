@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Col from "react-bootstrap/es/Col";
+import {Col, Table} from "react-bootstrap";
 
-class Person extends Component {
+class Expense extends Component {
 
     constructor(props) {
         super(props);
@@ -23,20 +23,43 @@ class Person extends Component {
 
     render() {
 
-        let expense = <div>Chargement en cours</div>;
+        let expense = <tbody><tr><td>Chargement en cours</td></tr></tbody>;
 
         if (this.state.expense.length > 0) {
-            expense = this.state.expense.map(expense => <Col key={expense.id}>{expense.amount}</Col>);
+            expense = this.state.expense.map(expense =>
+
+                <tbody key={expense.id}>
+                <tr>
+                    <th scope="row">{expense.id}</th>
+                    <td>{expense.person.firstname + ' ' + expense.person.lastname}</td>
+                    <td>{expense.amount}</td>
+                    <td>{expense.title}</td>
+                    <td>{expense.category.label}</td>
+                </tr>
+                </tbody>
+            );
         }
 
         return (
             <React.Fragment>
                 <h1>Dépenses</h1>
-                {expense}
+                <Table hover >
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Dépense</th>
+                        <th>Description</th>
+                        <th>Catégorie</th>
+                    </tr>
+                    </thead>
+                    {expense}
+                </Table>
+
             </React.Fragment>
 
         );
     }
 }
 
-export default Person;
+export default Expense;
