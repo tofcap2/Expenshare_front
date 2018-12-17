@@ -5,34 +5,34 @@ class Person extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {person:[]}
+        this.state = {expense:[]}
     }
 
     componentDidMount() {
-        fetch('http://localhost/dcdev/Expenshare/expenshare_back/public/person',{
+        fetch('http://localhost/dcdev/Expenshare/expenshare_back/public/expense',{
             method:'GET',
             headers: {
                 'X-Requested-With' : 'XMLHttpRequest'
             }
         })
             .then(response => response.json())
-            .then(data => this.setState({person:data}))
+            .then(data => this.setState({expense:data}))
         ;
     }
 
 
     render() {
 
-        let person = <div>Chargement en cours</div>;
+        let expense = <div>Chargement en cours</div>;
 
-        if (this.state.person.length > 0) {
-            person = this.state.person.map(person => <Col key={person.id}>{person.firstname + ' ' + person.lastname}</Col>);
+        if (this.state.expense.length > 0) {
+            expense = this.state.expense.map(expense => <Col key={expense.id}>{expense.amount}</Col>);
         }
 
         return (
             <React.Fragment>
-                <h1>Personnes</h1>
-                {person}
+                <h1>Dépenses</h1>
+                {expense}
             </React.Fragment>
 
         );
