@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {Route, BrowserRouter} from "react-router-dom";
 import './App.css';
-import Expense from './Component/Expense';
-import {Route} from "react-router-dom";
+import Group from "./Component/Group";
+import Index from "./Component/Index";
+
 import {Container} from "reactstrap";
-import Person from "./Component/Person";
-import Menu from "./Component/Menu";
 
 
 class App extends Component {
   render() {
     return (
         <Container>
-          <Menu/>
-        <Route path="/person" component={Person}/>
-        <Route path="/expense" component={Expense}/>
-
+            <BrowserRouter>
+                <div>
+                    <Route path="/group/:slug" component={Group} />
+                    <Route path="/" exact component={Index} />
+                </div>
+            </BrowserRouter>
         </Container>
-
     );
   }
 }

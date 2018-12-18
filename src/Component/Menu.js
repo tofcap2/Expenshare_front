@@ -6,18 +6,18 @@ import {Collapse, Nav, Navbar, NavbarBrand, NavItem} from "reactstrap";
 class Menu extends Component {
     render() {
         return (
-            <Navbar color="light" light expand="md">
+            <Navbar color="primary" light expand="md">
                 <NavbarBrand>Expenshare</NavbarBrand>
                 <Collapse isOpen={true} navbar>
                     <Nav className="ml-auto" navbar>
                         <NavItem>
-                            <NavLink to="/" exact className="nav-link">Accueil</NavLink>
+                            <NavLink to={this.props.url} exact className="nav-link">Accueil</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink to="/Person" className="nav-link">Personnes</NavLink>
+                            <NavLink to={this.props.url + '/person'} className="nav-link">Personnes</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink to="/Expense" className="nav-link">Depenses</NavLink>
+                            <NavLink to={this.props.url + '/expense'} className="nav-link">Depenses</NavLink>
                         </NavItem>
                     </Nav>
                 </Collapse>
