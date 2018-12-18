@@ -6,7 +6,7 @@ import {Collapse, Nav, Navbar, NavbarBrand, NavItem} from "reactstrap";
 class Menu extends Component {
     render() {
         return (
-            <Navbar color="primary" light expand="md">
+            <Navbar className="menuNavbar" light expand="md">
                 <NavbarBrand>Expenshare</NavbarBrand>
                 <Collapse isOpen={true} navbar>
                     <Nav className="ml-auto" navbar>

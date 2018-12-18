@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Redirect} from "react-router-dom";
+import {Button, Input, InputGroup} from "reactstrap";
+
 
 class Index extends Component {
 
@@ -50,9 +52,12 @@ class Index extends Component {
 
         return (
             <div>
-                <input type="text" value={this.state.slug} onChange={e => this.handleChange(e)} placeholder="Group ID"/>
-                <button onClick={e => this.handleCreate(e)}>Créer</button>
-                <button onClick={e => this.handleOpen(e)}>Ouvrir</button>
+                <h1 className="indexTitle">Saisissez l'identifiant de votre groupe</h1>
+                <InputGroup>
+                    <Input className="indexInput" type="text" value={this.state.slug} onChange={e => this.handleChange(e)} placeholder="Group ID"/>
+                </InputGroup>
+                <Button className="indexButton" size="lg" onClick={e => this.handleCreate(e)}>Créer</Button>
+                <Button className="indexButton" size="lg" onClick={e => this.handleOpen(e)}>Ouvrir</Button>
             </div>
         );
     }

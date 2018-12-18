@@ -17,7 +17,6 @@ class Person extends Component {
         ;
     }
 
-
     render() {
 
         let person = <tbody><tr><td>Chargement en cours</td></tr></tbody>;
