@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Table} from "react-bootstrap";
+import {NavLink, Route} from "react-router-dom";
+import FormPerson from "./FormPerson";
 
 class Person extends Component {
 
@@ -16,6 +18,7 @@ class Person extends Component {
             .then(data => this.setState({person:data}))
         ;
     }
+
 
     render() {
 
@@ -39,12 +42,15 @@ class Person extends Component {
         return (
             <React.Fragment>
                 <h1>Personnes</h1>
+                <NavLink to={this.props.match.url + '/add'}>Ajouter une personne</NavLink>
+                <Route path={this.props.match.url + '/add'} render={props => <FormPerson {...props} slug={this.props.slug}/>}/>
+
                 <Table hover>
                     <thead>
                     <tr>
                         <th>#</th>
                         <th>Nom</th>
-                        <th>Dépenses</th>
+                        <th>Montant</th>
                         <th>Total</th>
                     </tr>
                     </thead>

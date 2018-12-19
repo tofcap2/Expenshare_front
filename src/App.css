@@ -1,5 +1,4 @@
 body{
-  background-color: #AAB9FC;
   text-align: center;
 }
 
@@ -8,6 +7,7 @@ body{
 }
 
 .indexInput{
+  background-color: #DBDBDB;
   border-radius: 15px;
   margin-top: 100px;
   margin-bottom: 50px;
@@ -18,5 +18,5 @@ body{
 }
 
 .menuNavbar{
-  background-color: #FCAAE2;
+  background-color: yellow;
 }

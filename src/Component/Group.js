@@ -14,7 +14,7 @@ class Group extends Component {
                 <div>
                     <Menu url={this.props.match.url}/>
                     <Route path={this.props.match.url} exact component={Dashboard}/>
-                    <Route path={this.props.match.url + '/expense'} component={Expense}/>
+                    <Route path={this.props.match.url + '/expense'} render={props => <Expense {...props} slug={this.props.match.params.slug}/>}/>
                     <Route path={this.props.match.url + '/person'} render={props => <Person {...props} slug={this.props.match.params.slug}/>}/>
 
                 </div>

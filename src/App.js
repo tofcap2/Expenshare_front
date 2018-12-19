@@ -5,13 +5,14 @@ import './App.css';
 import Group from "./Component/Group";
 import Index from "./Component/Index";
 
+
 import {Container} from "reactstrap";
 
 
 class App extends Component {
   render() {
     return (
-        <Container>
+        <Container className="appContainer">
             <BrowserRouter>
                 <div>
                     <Route path="/group/:slug" component={Group} />
