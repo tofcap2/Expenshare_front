@@ -40,7 +40,7 @@ class Person extends Component {
         }
 
         return (
-            <React.Fragment>
+            <div className="">
                 <h1>Personnes</h1>
                 <NavLink to={this.props.match.url + '/add'}>Ajouter une personne</NavLink>
                 <Route path={this.props.match.url + '/add'} render={props => <FormPerson {...props} slug={this.props.slug}/>}/>
@@ -56,7 +56,7 @@ class Person extends Component {
                     </thead>
                     {person}
                 </Table>
-            </React.Fragment>
+            </div>
         );
     }
 }

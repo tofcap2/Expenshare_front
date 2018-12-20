@@ -1,9 +1,21 @@
 body{
+  background-color: #F9F9F9;
   text-align: center;
 }
 
+.indexContain{
+  background-color: aquamarine;
+  font-family: "Arial Black";
+}
+
 .indexTitle{
-  margin-top: 100px;
+  margin-top: 50px;
+  padding-top: 100px;
+}
+
+.indexSubtitle{
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .indexInput{
@@ -13,8 +25,8 @@ body{
   margin-bottom: 50px;
 }
 
-.indexButton{
-  margin: 50px 20px 240px ;
+.btn-info{
+  margin: 50px 20px 200px ;
 }
 
 .menuNavbar{
