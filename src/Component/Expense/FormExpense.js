@@ -26,7 +26,7 @@ class FormExpense extends Component {
 
     handleChangeD(event) {
         event.preventDefault();
-        this.setState({ createdat: event.target.value});
+        this.setState({ createdAt: event.target.value});
     }
 
     handleChangeP(event) {
@@ -41,10 +41,7 @@ class FormExpense extends Component {
             body: JSON.stringify({ title: this.state.title, amount: this.state.amount, category: this.state.cat, createdat: this.state.createdat, person: this.state.pers })
         })
             .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                alert('Nouvelle dépense crée avec succès !');
-            })
+            .then(data => {console.log(data);alert('Nouvelle dépense crée avec succès !');})
             .catch(err => alert('Erreur lors de la création de la dépense'))
         ;
     }
@@ -68,35 +65,35 @@ class FormExpense extends Component {
 
         return (
             <div>
-                <Container className="text-center mt-5 pt-4">
+                <Container className="text-center mt-1 pt-4">
                     <h3 className="p-3 text-dark">Ajouter une dépense au groupe {this.state.slug}</h3>
                     <Form className="m-0 m-auto">
                         <FormGroup>
-
+                            {console.log(this.state)}
                             <InputGroup>
-                                <Input className="form-control form-control-lg col-md-6 m-0 m-auto text-center" type="text" value={this.state.title} onChange={e => this.handleChangeT(e)} placeholder="Titre" />
+                                <Input className="form-control form-control-lg col-md-6 offset-3 mt-2 text-center border border-primary" type="text" value={this.state.title} onChange={e => this.handleChangeT(e)} placeholder="Titre" />
                             </InputGroup>
                             <InputGroup>
-                                <Input className="form-control form-control-lg col-md-6 m-0 m-auto text-center" type="number" value={this.state.amount} onChange={e => this.handleChangeA(e)} placeholder="Amount" />
+                                <Input className="form-control form-control-lg col-md-6 offset-3 mt-2 text-center border border-primary" type="number" value={this.state.amount} onChange={e => this.handleChangeA(e)} placeholder="Amount" />
                             </InputGroup>
                             <InputGroup>
-                                <Input className="form-control form-control-lg col-md-6 m-0 m-auto text-center" type="select" onChange={e => this.handleChangeC(e)}>
+                                <Input className="form-control form-control-lg col-md-6 offset-3 mt-2 text-center border border-primary" type="select" onChange={e => this.handleChangeC(e)}>
                                     <option value="0">Choisissez votre catégorie</option>
                                     {category}
                                 </Input>
                             </InputGroup>
                             <InputGroup>
-                                <Input className="form-control form-control-lg col-md-6 m-0 m-auto text-center" type="date" value={this.state.createdat} onChange={e => this.handleChangeD(e)} />
+                                <Input className="form-control form-control-lg col-md-6 offset-3 mt-2 text-center border border-primary" type="date" value={this.state.createdAt} onChange={e => this.handleChangeD(e)} />
                             </InputGroup>
                             <InputGroup>
-                                <Input className="form-control form-control-lg col-md-6 m-0 m-auto text-center" type="select" onChange={e => this.handleChangeP(e)}>
+                                <Input className="form-control form-control-lg col-md-6 offset-3 mt-2 text-center border border-primary" type="select" onChange={e => this.handleChangeP(e)}>
                                     <option value="0">Choisissez votre personnes</option>
                                     {person}
                                 </Input>
                             </InputGroup>
                         </FormGroup>
                         <FormGroup className="text-center">
-                            <Button onClick={e => this.handleCreate(e)} className="m-2 px-4 btn-lg btn-info">Ajouter</Button>
+                            <Button onClick={e => this.handleCreate(e)} className="m-2 px-4 btn-lg btn-success">Ajouter</Button>
                         </FormGroup>
                     </Form>
                 </Container>

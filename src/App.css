@@ -4,7 +4,7 @@ body{
 }
 
 .indexContain{
-  background-color: aquamarine;
+  background-color: #B7B6B6;
   border-radius: 50px;
   font-family: "Arial Black";
   padding-bottom: 30px;
@@ -32,5 +32,5 @@ body{
 }
 
 .menuNavbar{
-  background-color: yellow;
+  background-color: #B7B6B6;
 }

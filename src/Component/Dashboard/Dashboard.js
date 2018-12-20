@@ -7,6 +7,8 @@ class Dashboard extends Component {
             <div>
                 <h2>Dashboard</h2>
 
+                <img src={require('./../../Chart.jpg')} alt="l"  className="image" width="500" height="400" />
+
             </div>
         );
     }

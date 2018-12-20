@@ -13,33 +13,33 @@ class Expense extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {expense:[], expenseid:""}
-    };
+        this.state = {expense: [], expenseid: ""};
+    }
 
     handleDeleteExpense(e, id) {
         e.preventDefault(e);
         let expenses = this.state.expense;
         expenses = expenses.filter(expense => expense.id !== id);
-        this.setState({ expenseid: expenses});
+        this.setState({ expense: expenses});
 
         fetch('http://localhost/dcdev/Expenshare/expenshare_back/public/expense/', {
             method: 'DELETE',
             body: JSON.stringify({ expense: id })
         })
             .then(response => response.json())
-            .then(data => id)
+            .then(data => id, alert('Dépense supprimée !'))
+            .catch(err => alert('Erreur lors de la suppression de la dépense'))
         ;
 
     }
 
     componentDidMount() {
-        fetch('http://localhost/dcdev/Expenshare/expenshare_back/public/expense/group/' + this.props.slug,{
-
-        })
+        fetch('http://localhost/dcdev/Expenshare/expenshare_back/public/expense/group/' + this.props.slug)
             .then(response => response.json())
-            .then(data => this.setState({expense:data}))
-        ;
-    };
+            .then(data => this.setState({
+                expense: data,
+            }))
+    }
 
     render() {
 
@@ -52,25 +52,24 @@ class Expense extends Component {
                 <tr>
                     <th scope="row">{expense.id}</th>
                     <td>{expense.person.firstname + ' ' + expense.person.lastname}</td>
-                    <td>{parseFloat(expense.amount) + ' €'}</td>
+                    <td>{expense.amount}</td>
                     <td>{expense.title}</td>
                     <td>{expense.category.label}</td>
+                    <td><FontAwesomeIcon icon={expense.category.icon} /></td>
+                    <td>{moment(expense.createdAt).format("D/M/Y")}</td>
                     <td>
-                        <FontAwesomeIcon icon={expense.category.icon}/>
+                        <Button className="btn-warning" onClick={e => this.handleDeleteExpense(e, expense.id)} >Supprimer</Button>
+                        <Button className="ml-2 btn-info">Modifier</Button>
                     </td>
-                    <td>{moment(expense.createdAt).format("DD-MM-YYYY")}</td>
-                    <td><Button className="btn-warning" onClick={e => this.handleDeleteExpense(e, expense.id) }>Supprimer</Button>
-                        <Button className="btn-info">Modifier</Button>
-                    </td>
+
                 </tr>
                 </tbody>
-
             );
         }
 
         return (
-            <div>
-                <h2>Dépenses</h2>
+            <React.Fragment>
+                <h1>Dépenses</h1>
                 <NavLink to={this.props.match.url + '/add'}>Ajouter une dépense</NavLink>
                 <Route path={this.props.match.url + '/add'} render={props => <FormExpense {...props} slug={this.props.slug}/>}/>
                 <Table hover>
@@ -78,20 +77,21 @@ class Expense extends Component {
                     <tr>
                         <th>#</th>
                         <th>Nom</th>
-                        <th>Montant</th>
-                        <th>Libelle</th>
-                        <th>Catéorie</th>
-                        <th>Icon</th>
+                        <th>Dépense</th>
+                        <th>Description</th>
+                        <th>Catégorie</th>
+                        <th>Icone</th>
                         <th>Date</th>
                         <th>Action</th>
                     </tr>
                     </thead>
                     {expense}
                 </Table>
-            </div>
+            </React.Fragment>
 
         );
     }
 }
+
 
 export default Expense;
