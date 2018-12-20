@@ -72,7 +72,7 @@ class FormExpense extends Component {
                     <h3 className="p-3 text-dark">Ajouter une dépense au groupe {this.state.slug}</h3>
                     <Form className="m-0 m-auto">
                         <FormGroup>
-                            {console.log(this.state)}
+
                             <InputGroup>
                                 <Input className="form-control form-control-lg col-md-6 m-0 m-auto text-center" type="text" value={this.state.title} onChange={e => this.handleChangeT(e)} placeholder="Titre" />
                             </InputGroup>

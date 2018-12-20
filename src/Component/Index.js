@@ -58,8 +58,10 @@ class Index extends Component {
                     <InputGroup>
                         <Input className="indexInput col-md-6 m-0 m-auto" type="text" value={this.state.slug} onChange={e => this.handleChange(e)} placeholder="Identifiant du groupe"/>
                     </InputGroup>
-                    <Button className="m-2 px-4 btn-lg btn-info" onClick={e => this.handleCreate(e)}>Créer</Button>
-                    <Button className="m-2 px-4 btn-lg btn-info" onClick={e => this.handleOpen(e)}>Ouvrir</Button>
+                    <div className="indexButton">
+                        <Button className="m-2 px-4 btn-lg btn-warning" onClick={e => this.handleCreate(e)}>Créer</Button>
+                        <Button className="m-2 px-4 btn-lg btn-success" onClick={e => this.handleOpen(e)}>Ouvrir</Button>
+                    </div>
                 </Container>
             </div>
         );

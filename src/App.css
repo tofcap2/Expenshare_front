@@ -5,7 +5,9 @@ body{
 
 .indexContain{
   background-color: aquamarine;
+  border-radius: 50px;
   font-family: "Arial Black";
+  padding-bottom: 30px;
 }
 
 .indexTitle{
@@ -25,8 +27,8 @@ body{
   margin-bottom: 50px;
 }
 
-.btn-info{
-  margin: 50px 20px 200px ;
+.indexButton{
+  margin: 50px 20px 100px ;
 }
 
 .menuNavbar{

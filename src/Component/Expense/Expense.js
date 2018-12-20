@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {NavLink, Route} from "react-router-dom";
 import FormExpense from "./FormExpense";
-import {Table} from "react-bootstrap";
+import {Button, Table} from "react-bootstrap";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCar, faHotel, faUtensils, faRunning, faVideo, faWineBottle } from '@fortawesome/free-solid-svg-icons';
+import moment from "moment";
 library.add(faCar, faHotel, faUtensils, faRunning, faVideo, faWineBottle);
 
 
@@ -12,8 +13,24 @@ class Expense extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {expense:[]}
+        this.state = {expense:[], expenseid:""}
     };
+
+    handleDeleteExpense(e, id) {
+        e.preventDefault(e);
+        let expenses = this.state.expense;
+        expenses = expenses.filter(expense => expense.id !== id);
+        this.setState({ expenseid: expenses});
+
+        fetch('http://localhost/dcdev/Expenshare/expenshare_back/public/expense/', {
+            method: 'DELETE',
+            body: JSON.stringify({ expense: id })
+        })
+            .then(response => response.json())
+            .then(data => id)
+        ;
+
+    }
 
     componentDidMount() {
         fetch('http://localhost/dcdev/Expenshare/expenshare_back/public/expense/group/' + this.props.slug,{
@@ -41,6 +58,10 @@ class Expense extends Component {
                     <td>
                         <FontAwesomeIcon icon={expense.category.icon}/>
                     </td>
+                    <td>{moment(expense.createdAt).format("DD-MM-YYYY")}</td>
+                    <td><Button className="btn-warning" onClick={e => this.handleDeleteExpense(e, expense.id) }>Supprimer</Button>
+                        <Button className="btn-info">Modifier</Button>
+                    </td>
                 </tr>
                 </tbody>
 
@@ -61,6 +82,8 @@ class Expense extends Component {
                         <th>Libelle</th>
                         <th>Catéorie</th>
                         <th>Icon</th>
+                        <th>Date</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     {expense}

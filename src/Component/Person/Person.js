@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Table} from "react-bootstrap";
+import {Table, Button} from "react-bootstrap";
 import {NavLink, Route} from "react-router-dom";
 import FormPerson from "./FormPerson";
 
@@ -7,7 +7,23 @@ class Person extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {person:[]};
+        this.state = { person: [], personid:"" };
+    }
+
+    handleDeletePerson(e, id) {
+        e.preventDefault(e);
+        let persons = this.state.person;
+        persons = persons.filter(person => person.id !== id);
+        this.setState({ personid: persons});
+
+        fetch('http://localhost/dcdev/Expenshare/expenshare_back/public/person/', {
+            method: 'DELETE',
+            body: JSON.stringify({ person: id })
+        })
+            .then(response => response.json())
+            .then(data => id)
+        ;
+
     }
 
     componentDidMount() {
@@ -33,6 +49,8 @@ class Person extends Component {
                     <td>{person.firstname + ' ' + person.lastname}</td>
                     <td>{person.expenses.length}</td>
                     <td>{person.expenses.reduce((accumulator, expense) => accumulator + parseFloat(expense.amount), 0)}</td>
+                    <td><Button className="btn-warning" onClick={e => this.handleDeletePerson(e, person.id) }>Supprimer</Button>
+                    </td>
                 </tr>
                 </tbody>
 
@@ -52,6 +70,7 @@ class Person extends Component {
                         <th>Nom</th>
                         <th>Montant</th>
                         <th>Total</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     {person}
