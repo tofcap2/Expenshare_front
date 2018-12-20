@@ -38,7 +38,7 @@ class FormExpense extends Component {
         event.preventDefault();
         fetch('http://localhost/dcdev/Expenshare/expenshare_back/public/expense/', {
             method: 'POST',
-            body: JSON.stringify({ title: this.state.title, amount: this.state.amount, category: this.state.cat, createdat: this.state.createdat, person: this.state.pers })
+            body: JSON.stringify({ title: this.state.title, amount: this.state.amount, category: this.state.cat, createdAt: this.state.createdat, person: this.state.pers })
         })
             .then(response => response.json())
             .then(data => {console.log(data);alert('Nouvelle dépense crée avec succès !');})
